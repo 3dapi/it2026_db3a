@@ -1,0 +1,1115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="10486" viewBox="0 0 1500 10486">
+<rect width="100%" height="100%" fill="#f6f8fb"/>
+<style>text{font-family:Arial,"Noto Sans CJK KR",sans-serif;fill:#17212f}.title{font-size:34px;font-weight:700}.sub{font-size:17px;fill:#536273}.entity{font-size:19px;font-weight:700}.attr{font-size:14px}.section{font-size:23px;font-weight:700}.rel{font-size:15px}.badge{font-size:14px;font-weight:700}</style>
+<text x="44" y="58" class="title">몬스터 헌터: 와일즈 | 개념 관계형 ERD</text>
+<text x="44" y="91" class="sub">헌터 진행·사냥 세션·보상·재료 제작·DLC 권한</text>
+<text x="44" y="132" class="sub">엔터티 90개 · 관계 144개 · 편집 원본: erd_wilds.mmd</text>
+<rect x="44" y="170" width="452" height="190" rx="10" fill="#dceeff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="199" class="entity">PLAYER_ACCOUNT</text>
+<line x1="56" y1="211" x2="484" y2="211" stroke="#a8b5c2"/>
+<text x="58" y="234" class="attr">int account_id  [PK]</text>
+<text x="58" y="251" class="attr">string platform_id</text>
+<text x="58" y="268" class="attr">datetime created_at</text>
+<rect x="510" y="170" width="452" height="190" rx="10" fill="#dff4e5" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="199" class="entity">HUNTER</text>
+<line x1="522" y1="211" x2="950" y2="211" stroke="#a8b5c2"/>
+<text x="524" y="234" class="attr">int hunter_id  [PK]</text>
+<text x="524" y="251" class="attr">int account_id  [FK]</text>
+<text x="524" y="268" class="attr">string name</text>
+<text x="524" y="285" class="attr">int hunter_rank</text>
+<rect x="976" y="170" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="199" class="entity">PALICO</text>
+<line x1="988" y1="211" x2="1416" y2="211" stroke="#a8b5c2"/>
+<text x="990" y="234" class="attr">int palico_id  [PK]</text>
+<text x="990" y="251" class="attr">int hunter_id  [FK]</text>
+<text x="990" y="268" class="attr">string name</text>
+<text x="990" y="285" class="attr">string appearance_preset</text>
+<rect x="44" y="382" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="411" class="entity">PALICO_SUPPORT_ACTION</text>
+<line x1="56" y1="423" x2="484" y2="423" stroke="#a8b5c2"/>
+<text x="58" y="446" class="attr">int action_id  [PK]</text>
+<text x="58" y="463" class="attr">string action_name</text>
+<text x="58" y="480" class="attr">string unlock_condition</text>
+<rect x="510" y="382" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="411" class="entity">PALICO_ACTION_UNLOCK</text>
+<line x1="522" y1="423" x2="950" y2="423" stroke="#a8b5c2"/>
+<text x="524" y="446" class="attr">int palico_id  [PK, FK]</text>
+<text x="524" y="463" class="attr">int action_id  [PK, FK]</text>
+<text x="524" y="480" class="attr">datetime unlocked_at</text>
+<rect x="976" y="382" width="452" height="190" rx="10" fill="#e9e2ff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="411" class="entity">QUEST</text>
+<line x1="988" y1="423" x2="1416" y2="423" stroke="#a8b5c2"/>
+<text x="990" y="446" class="attr">int quest_id  [PK]</text>
+<text x="990" y="463" class="attr">string quest_type</text>
+<text x="990" y="480" class="attr">string quest_category</text>
+<text x="990" y="497" class="attr">int rank</text>
+<text x="990" y="514" class="attr">int required_hunter_rank</text>
+<text x="990" y="531" class="attr">boolean repeatable</text>
+<text x="990" y="548" class="attr">int locale_id  [FK]</text>
+<rect x="44" y="594" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="623" class="entity">SEASONAL_EVENT</text>
+<line x1="56" y1="635" x2="484" y2="635" stroke="#a8b5c2"/>
+<text x="58" y="658" class="attr">int event_id  [PK]</text>
+<text x="58" y="675" class="attr">string event_name</text>
+<text x="58" y="692" class="attr">datetime starts_at</text>
+<text x="58" y="709" class="attr">datetime ends_at</text>
+<text x="58" y="726" class="attr">string rerun_policy</text>
+<rect x="510" y="594" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="623" class="entity">EVENT_QUEST_WINDOW</text>
+<line x1="522" y1="635" x2="950" y2="635" stroke="#a8b5c2"/>
+<text x="524" y="658" class="attr">int event_id  [PK, FK]</text>
+<text x="524" y="675" class="attr">int quest_id  [PK, FK]</text>
+<text x="524" y="692" class="attr">string window_cycle_key  [PK]</text>
+<text x="524" y="709" class="attr">datetime opens_at</text>
+<text x="524" y="726" class="attr">datetime closes_at</text>
+<rect x="976" y="594" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="623" class="entity">DAILY_BOUNTY</text>
+<line x1="988" y1="635" x2="1416" y2="635" stroke="#a8b5c2"/>
+<text x="990" y="658" class="attr">int bounty_id  [PK]</text>
+<text x="990" y="675" class="attr">int event_id  [FK]</text>
+<text x="990" y="692" class="attr">string bounty_type</text>
+<text x="990" y="709" class="attr">string reset_cycle</text>
+<rect x="44" y="806" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="835" class="entity">HUNTER_BOUNTY_STATUS</text>
+<line x1="56" y1="847" x2="484" y2="847" stroke="#a8b5c2"/>
+<text x="58" y="870" class="attr">int hunter_id  [PK, FK]</text>
+<text x="58" y="887" class="attr">int bounty_id  [PK, FK]</text>
+<text x="58" y="904" class="attr">string cycle_key  [PK]</text>
+<text x="58" y="921" class="attr">string status</text>
+<text x="58" y="938" class="attr">datetime completed_at</text>
+<rect x="510" y="806" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="835" class="entity">LOGIN_BONUS_CAMPAIGN</text>
+<line x1="522" y1="847" x2="950" y2="847" stroke="#a8b5c2"/>
+<text x="524" y="870" class="attr">int campaign_id  [PK]</text>
+<text x="524" y="887" class="attr">string campaign_name</text>
+<text x="524" y="904" class="attr">datetime starts_at</text>
+<text x="524" y="921" class="attr">datetime ends_at</text>
+<rect x="976" y="806" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="835" class="entity">LOGIN_BONUS_DAY</text>
+<line x1="988" y1="847" x2="1416" y2="847" stroke="#a8b5c2"/>
+<text x="990" y="870" class="attr">int campaign_id  [PK, FK]</text>
+<text x="990" y="887" class="attr">int day_no  [PK]</text>
+<rect x="44" y="1018" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="1047" class="entity">LOGIN_BONUS_REWARD</text>
+<line x1="56" y1="1059" x2="484" y2="1059" stroke="#a8b5c2"/>
+<text x="58" y="1082" class="attr">int campaign_id  [PK, FK]</text>
+<text x="58" y="1099" class="attr">int day_no  [PK, FK]</text>
+<text x="58" y="1116" class="attr">int reward_line_no  [PK]</text>
+<text x="58" y="1133" class="attr">int item_id  [FK]</text>
+<text x="58" y="1150" class="attr">int quantity</text>
+<rect x="510" y="1018" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="1047" class="entity">HUNTER_LOGIN_CLAIM</text>
+<line x1="522" y1="1059" x2="950" y2="1059" stroke="#a8b5c2"/>
+<text x="524" y="1082" class="attr">int hunter_id  [PK, FK]</text>
+<text x="524" y="1099" class="attr">int campaign_id  [PK, FK]</text>
+<text x="524" y="1116" class="attr">int day_no  [PK, FK]</text>
+<text x="524" y="1133" class="attr">datetime claimed_at</text>
+<rect x="976" y="1018" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="1047" class="entity">MEAL_RECIPE</text>
+<line x1="988" y1="1059" x2="1416" y2="1059" stroke="#a8b5c2"/>
+<text x="990" y="1082" class="attr">int meal_recipe_id  [PK]</text>
+<text x="990" y="1099" class="attr">string meal_name</text>
+<text x="990" y="1116" class="attr">string effect_summary</text>
+<text x="990" y="1133" class="attr">int duration_minutes</text>
+<rect x="44" y="1230" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="1259" class="entity">MEAL_RECIPE_INGREDIENT</text>
+<line x1="56" y1="1271" x2="484" y2="1271" stroke="#a8b5c2"/>
+<text x="58" y="1294" class="attr">int meal_recipe_id  [PK, FK]</text>
+<text x="58" y="1311" class="attr">int item_id  [PK, FK]</text>
+<text x="58" y="1328" class="attr">int required_quantity</text>
+<rect x="510" y="1230" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="1259" class="entity">HUNTER_MEAL_USE</text>
+<line x1="522" y1="1271" x2="950" y2="1271" stroke="#a8b5c2"/>
+<text x="524" y="1294" class="attr">int meal_use_id  [PK]</text>
+<text x="524" y="1311" class="attr">int hunter_id  [FK]</text>
+<text x="524" y="1328" class="attr">int meal_recipe_id  [FK]</text>
+<text x="524" y="1345" class="attr">int session_id  [FK]</text>
+<text x="524" y="1362" class="attr">int transaction_id  [FK]</text>
+<text x="524" y="1379" class="attr">string use_context</text>
+<text x="524" y="1396" class="attr">datetime consumed_at</text>
+<rect x="976" y="1230" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="1259" class="entity">HUB_ACTIVITY</text>
+<line x1="988" y1="1271" x2="1416" y2="1271" stroke="#a8b5c2"/>
+<text x="990" y="1294" class="attr">int activity_id  [PK]</text>
+<text x="990" y="1311" class="attr">string activity_name</text>
+<text x="990" y="1328" class="attr">string required_voucher_type</text>
+<rect x="44" y="1442" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="1471" class="entity">HUNTER_HUB_ACTIVITY</text>
+<line x1="56" y1="1483" x2="484" y2="1483" stroke="#a8b5c2"/>
+<text x="58" y="1506" class="attr">int activity_run_id  [PK]</text>
+<text x="58" y="1523" class="attr">int hunter_id  [FK]</text>
+<text x="58" y="1540" class="attr">int activity_id  [FK]</text>
+<text x="58" y="1557" class="attr">int score</text>
+<text x="58" y="1574" class="attr">datetime played_at</text>
+<rect x="510" y="1442" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="1471" class="entity">HUB_ACTIVITY_REWARD</text>
+<line x1="522" y1="1483" x2="950" y2="1483" stroke="#a8b5c2"/>
+<text x="524" y="1506" class="attr">int activity_id  [PK, FK]</text>
+<text x="524" y="1523" class="attr">int reward_no  [PK]</text>
+<text x="524" y="1540" class="attr">int item_id  [FK]</text>
+<text x="524" y="1557" class="attr">int quantity</text>
+<rect x="976" y="1442" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="1471" class="entity">HUNTER_HUB_REWARD_CLAIM</text>
+<line x1="988" y1="1483" x2="1416" y2="1483" stroke="#a8b5c2"/>
+<text x="990" y="1506" class="attr">int claim_id  [PK]</text>
+<text x="990" y="1523" class="attr">int activity_run_id  [FK]</text>
+<text x="990" y="1540" class="attr">int activity_id  [FK]</text>
+<text x="990" y="1557" class="attr">int reward_no  [FK]</text>
+<text x="990" y="1574" class="attr">int transaction_id  [FK]</text>
+<text x="990" y="1591" class="attr">datetime claimed_at</text>
+<rect x="44" y="1654" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="1683" class="entity">LOCALE</text>
+<line x1="56" y1="1695" x2="484" y2="1695" stroke="#a8b5c2"/>
+<text x="58" y="1718" class="attr">int locale_id  [PK]</text>
+<text x="58" y="1735" class="attr">string name</text>
+<text x="58" y="1752" class="attr">string ecological_region</text>
+<rect x="510" y="1654" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="1683" class="entity">EXPEDITION_SESSION</text>
+<line x1="522" y1="1695" x2="950" y2="1695" stroke="#a8b5c2"/>
+<text x="524" y="1718" class="attr">int expedition_session_id  [PK]</text>
+<text x="524" y="1735" class="attr">int locale_id  [FK]</text>
+<text x="524" y="1752" class="attr">datetime started_at</text>
+<text x="524" y="1769" class="attr">datetime ended_at</text>
+<rect x="976" y="1654" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="1683" class="entity">EXPEDITION_PARTICIPANT</text>
+<line x1="988" y1="1695" x2="1416" y2="1695" stroke="#a8b5c2"/>
+<text x="990" y="1718" class="attr">int expedition_session_id  [PK, FK]</text>
+<text x="990" y="1735" class="attr">int hunter_id  [PK, FK]</text>
+<text x="990" y="1752" class="attr">datetime joined_at</text>
+<rect x="44" y="1866" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="1895" class="entity">FIELD_ENVIRONMENT_LOG</text>
+<line x1="56" y1="1907" x2="484" y2="1907" stroke="#a8b5c2"/>
+<text x="58" y="1930" class="attr">UNIQUE (expedition_session_id, sequence_no)</text>
+<text x="58" y="1947" class="attr">NOT NULL (sequence_no)</text>
+<text x="58" y="1964" class="attr">int environment_log_id  [PK]</text>
+<text x="58" y="1981" class="attr">int expedition_session_id  [FK]</text>
+<text x="58" y="1998" class="attr">int sequence_no</text>
+<text x="58" y="2015" class="attr">string period_type</text>
+<text x="58" y="2032" class="attr">string weather</text>
+<text x="58" y="2049" class="attr">… 1개 속성 더 있음</text>
+<rect x="510" y="1866" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="1895" class="entity">POPUP_CAMP_SITE</text>
+<line x1="522" y1="1907" x2="950" y2="1907" stroke="#a8b5c2"/>
+<text x="524" y="1930" class="attr">int camp_site_id  [PK]</text>
+<text x="524" y="1947" class="attr">int locale_id  [FK]</text>
+<text x="524" y="1964" class="attr">string site_name</text>
+<text x="524" y="1981" class="attr">string site_type</text>
+<rect x="976" y="1866" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="1895" class="entity">CAMP_PLACEMENT</text>
+<line x1="988" y1="1907" x2="1416" y2="1907" stroke="#a8b5c2"/>
+<text x="990" y="1930" class="attr">UNIQUE (expedition_session_id, camp_site_id)</text>
+<text x="990" y="1947" class="attr">int camp_placement_id  [PK]</text>
+<text x="990" y="1964" class="attr">int expedition_session_id  [FK]</text>
+<text x="990" y="1981" class="attr">int camp_site_id  [FK]</text>
+<text x="990" y="1998" class="attr">int hunter_id  [FK]</text>
+<text x="990" y="2015" class="attr">string status</text>
+<rect x="44" y="2078" width="452" height="190" rx="10" fill="#e9e2ff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="2107" class="entity">QUEST_PREREQUISITE</text>
+<line x1="56" y1="2119" x2="484" y2="2119" stroke="#a8b5c2"/>
+<text x="58" y="2142" class="attr">int quest_id  [PK, FK]</text>
+<text x="58" y="2159" class="attr">int prerequisite_quest_id  [PK, FK]</text>
+<text x="58" y="2176" class="attr">string required_state</text>
+<rect x="510" y="2078" width="452" height="190" rx="10" fill="#dceeff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="2107" class="entity">HUNTER_QUEST_STATE</text>
+<line x1="522" y1="2119" x2="950" y2="2119" stroke="#a8b5c2"/>
+<text x="524" y="2142" class="attr">int hunter_id  [PK, FK]</text>
+<text x="524" y="2159" class="attr">int quest_id  [PK, FK]</text>
+<text x="524" y="2176" class="attr">string unlock_state</text>
+<text x="524" y="2193" class="attr">datetime first_clear_at</text>
+<rect x="976" y="2078" width="452" height="190" rx="10" fill="#dceeff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="2107" class="entity">HUNT_SESSION</text>
+<line x1="988" y1="2119" x2="1416" y2="2119" stroke="#a8b5c2"/>
+<text x="990" y="2142" class="attr">int session_id  [PK]</text>
+<text x="990" y="2159" class="attr">int quest_id  [FK]</text>
+<text x="990" y="2176" class="attr">int investigation_save_id  [FK]</text>
+<text x="990" y="2193" class="attr">int attempt_no</text>
+<text x="990" y="2210" class="attr">int expedition_session_id  [FK]</text>
+<text x="990" y="2227" class="attr">datetime started_at</text>
+<text x="990" y="2244" class="attr">datetime ended_at</text>
+<text x="990" y="2261" class="attr">… 1개 속성 더 있음</text>
+<rect x="44" y="2290" width="452" height="190" rx="10" fill="#dceeff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="2319" class="entity">HUNT_PARTICIPANT</text>
+<line x1="56" y1="2331" x2="484" y2="2331" stroke="#a8b5c2"/>
+<text x="58" y="2354" class="attr">int session_id  [PK, FK]</text>
+<text x="58" y="2371" class="attr">int hunter_id  [PK, FK]</text>
+<text x="58" y="2388" class="attr">string participant_result</text>
+<rect x="510" y="2290" width="452" height="190" rx="10" fill="#e9e2ff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="2319" class="entity">MONSTER</text>
+<line x1="522" y1="2331" x2="950" y2="2331" stroke="#a8b5c2"/>
+<text x="524" y="2354" class="attr">int monster_id  [PK]</text>
+<text x="524" y="2371" class="attr">string name</text>
+<text x="524" y="2388" class="attr">string monster_class</text>
+<text x="524" y="2405" class="attr">string weakness</text>
+<rect x="976" y="2290" width="452" height="190" rx="10" fill="#e9e2ff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="2319" class="entity">SESSION_TARGET</text>
+<line x1="988" y1="2331" x2="1416" y2="2331" stroke="#a8b5c2"/>
+<text x="990" y="2354" class="attr">int session_id  [PK, FK]</text>
+<text x="990" y="2371" class="attr">int monster_id  [PK, FK]</text>
+<text x="990" y="2388" class="attr">string target_result</text>
+<rect x="44" y="2502" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="2531" class="entity">MONSTER_PART</text>
+<line x1="56" y1="2543" x2="484" y2="2543" stroke="#a8b5c2"/>
+<text x="58" y="2566" class="attr">int monster_part_id  [PK]</text>
+<text x="58" y="2583" class="attr">int monster_id  [FK]</text>
+<text x="58" y="2600" class="attr">string part_name</text>
+<text x="58" y="2617" class="attr">boolean breakable</text>
+<text x="58" y="2634" class="attr">boolean severable</text>
+<rect x="510" y="2502" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="2531" class="entity">HUNT_PART_EVENT</text>
+<line x1="522" y1="2543" x2="950" y2="2543" stroke="#a8b5c2"/>
+<text x="524" y="2566" class="attr">int part_event_id  [PK]</text>
+<text x="524" y="2583" class="attr">int session_id  [FK]</text>
+<text x="524" y="2600" class="attr">int monster_part_id  [FK]</text>
+<text x="524" y="2617" class="attr">int hunter_id  [FK]</text>
+<text x="524" y="2634" class="attr">string event_type</text>
+<text x="524" y="2651" class="attr">datetime occurred_at</text>
+<rect x="976" y="2502" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="2531" class="entity">SUPPORT_HUNTER</text>
+<line x1="988" y1="2543" x2="1416" y2="2543" stroke="#a8b5c2"/>
+<text x="990" y="2566" class="attr">int support_hunter_id  [PK]</text>
+<text x="990" y="2583" class="attr">string name</text>
+<text x="990" y="2600" class="attr">string weapon_class</text>
+<rect x="44" y="2714" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="2743" class="entity">SUPPORT_PARTICIPATION</text>
+<line x1="56" y1="2755" x2="484" y2="2755" stroke="#a8b5c2"/>
+<text x="58" y="2778" class="attr">int session_id  [PK, FK]</text>
+<text x="58" y="2795" class="attr">int support_hunter_id  [PK, FK]</text>
+<text x="58" y="2812" class="attr">datetime joined_at</text>
+<text x="58" y="2829" class="attr">string participation_type</text>
+<rect x="510" y="2714" width="452" height="190" rx="10" fill="#e9e2ff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="2743" class="entity">ITEM</text>
+<line x1="522" y1="2755" x2="950" y2="2755" stroke="#a8b5c2"/>
+<text x="524" y="2778" class="attr">int item_id  [PK]</text>
+<text x="524" y="2795" class="attr">string name</text>
+<text x="524" y="2812" class="attr">string category</text>
+<text x="524" y="2829" class="attr">int rarity</text>
+<rect x="976" y="2714" width="452" height="190" rx="10" fill="#e9e2ff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="2743" class="entity">REWARD_GRANT</text>
+<line x1="988" y1="2755" x2="1416" y2="2755" stroke="#a8b5c2"/>
+<text x="990" y="2778" class="attr">int reward_id  [PK]</text>
+<text x="990" y="2795" class="attr">int session_id  [FK]</text>
+<text x="990" y="2812" class="attr">int hunter_id  [FK]</text>
+<text x="990" y="2829" class="attr">int item_id  [FK]</text>
+<text x="990" y="2846" class="attr">int quantity</text>
+<text x="990" y="2863" class="attr">string source</text>
+<rect x="44" y="2926" width="452" height="190" rx="10" fill="#e9e2ff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="2955" class="entity">INVENTORY_STACK</text>
+<line x1="56" y1="2967" x2="484" y2="2967" stroke="#a8b5c2"/>
+<text x="58" y="2990" class="attr">int hunter_id  [PK, FK]</text>
+<text x="58" y="3007" class="attr">int item_id  [PK, FK]</text>
+<text x="58" y="3024" class="attr">int quantity</text>
+<rect x="510" y="2926" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="2955" class="entity">ITEM_TRANSACTION</text>
+<line x1="522" y1="2967" x2="950" y2="2967" stroke="#a8b5c2"/>
+<text x="524" y="2990" class="attr">int transaction_id  [PK]</text>
+<text x="524" y="3007" class="attr">int hunter_id  [FK]</text>
+<text x="524" y="3024" class="attr">string source_type</text>
+<text x="524" y="3041" class="attr">string source_ref</text>
+<text x="524" y="3058" class="attr">datetime occurred_at</text>
+<rect x="976" y="2926" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="2955" class="entity">ITEM_TRANSACTION_LINE</text>
+<line x1="988" y1="2967" x2="1416" y2="2967" stroke="#a8b5c2"/>
+<text x="990" y="2990" class="attr">int transaction_id  [PK, FK]</text>
+<text x="990" y="3007" class="attr">int item_id  [PK, FK]</text>
+<text x="990" y="3024" class="attr">int quantity_delta</text>
+<rect x="44" y="3138" width="452" height="190" rx="10" fill="#dff4e5" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="3167" class="entity">EQUIPMENT</text>
+<line x1="56" y1="3179" x2="484" y2="3179" stroke="#a8b5c2"/>
+<text x="58" y="3202" class="attr">int equipment_id  [PK]</text>
+<text x="58" y="3219" class="attr">string name</text>
+<text x="58" y="3236" class="attr">string equipment_type</text>
+<text x="58" y="3253" class="attr">string weapon_class</text>
+<text x="58" y="3270" class="attr">int rarity</text>
+<rect x="510" y="3138" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="3167" class="entity">EQUIPMENT_SKILL</text>
+<line x1="522" y1="3179" x2="950" y2="3179" stroke="#a8b5c2"/>
+<text x="524" y="3202" class="attr">int skill_id  [PK]</text>
+<text x="524" y="3219" class="attr">string skill_name</text>
+<text x="524" y="3236" class="attr">string skill_category</text>
+<rect x="976" y="3138" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="3167" class="entity">EQUIPMENT_SKILL_GRANT</text>
+<line x1="988" y1="3179" x2="1416" y2="3179" stroke="#a8b5c2"/>
+<text x="990" y="3202" class="attr">int equipment_id  [PK, FK]</text>
+<text x="990" y="3219" class="attr">int skill_id  [PK, FK]</text>
+<text x="990" y="3236" class="attr">int skill_level</text>
+<text x="990" y="3253" class="attr">string grant_type</text>
+<rect x="44" y="3350" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="3379" class="entity">EQUIPMENT_UPGRADE_PATH</text>
+<line x1="56" y1="3391" x2="484" y2="3391" stroke="#a8b5c2"/>
+<text x="58" y="3414" class="attr">int source_equipment_id  [PK, FK]</text>
+<text x="58" y="3431" class="attr">int target_equipment_id  [PK, FK]</text>
+<text x="58" y="3448" class="attr">int recipe_id  [FK]</text>
+<rect x="510" y="3350" width="452" height="190" rx="10" fill="#dff4e5" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="3379" class="entity">CRAFT_RECIPE</text>
+<line x1="522" y1="3391" x2="950" y2="3391" stroke="#a8b5c2"/>
+<text x="524" y="3414" class="attr">int recipe_id  [PK]</text>
+<text x="524" y="3431" class="attr">int equipment_id  [FK]</text>
+<text x="524" y="3448" class="attr">int zenny_cost</text>
+<rect x="976" y="3350" width="452" height="190" rx="10" fill="#e9e2ff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="3379" class="entity">RECIPE_MATERIAL</text>
+<line x1="988" y1="3391" x2="1416" y2="3391" stroke="#a8b5c2"/>
+<text x="990" y="3414" class="attr">int recipe_id  [PK, FK]</text>
+<text x="990" y="3431" class="attr">int item_id  [PK, FK]</text>
+<text x="990" y="3448" class="attr">int required_quantity</text>
+<rect x="44" y="3562" width="452" height="190" rx="10" fill="#dff4e5" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="3591" class="entity">EQUIPMENT_INSTANCE</text>
+<line x1="56" y1="3603" x2="484" y2="3603" stroke="#a8b5c2"/>
+<text x="58" y="3626" class="attr">int equipment_instance_id  [PK]</text>
+<text x="58" y="3643" class="attr">int hunter_id  [FK]</text>
+<text x="58" y="3660" class="attr">int equipment_id  [FK]</text>
+<text x="58" y="3677" class="attr">int craft_action_id  [FK]</text>
+<text x="58" y="3694" class="attr">int upgrade_level</text>
+<rect x="510" y="3562" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="3591" class="entity">PALICO_EQUIPMENT_INSTANCE</text>
+<line x1="522" y1="3603" x2="950" y2="3603" stroke="#a8b5c2"/>
+<text x="524" y="3626" class="attr">int palico_equipment_id  [PK]</text>
+<text x="524" y="3643" class="attr">int palico_id  [FK]</text>
+<text x="524" y="3660" class="attr">int equipment_id  [FK]</text>
+<text x="524" y="3677" class="attr">string equipment_slot</text>
+<text x="524" y="3694" class="attr">int upgrade_level</text>
+<rect x="976" y="3562" width="452" height="190" rx="10" fill="#dff4e5" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="3591" class="entity">CRAFT_ACTION</text>
+<line x1="988" y1="3603" x2="1416" y2="3603" stroke="#a8b5c2"/>
+<text x="990" y="3626" class="attr">int craft_action_id  [PK]</text>
+<text x="990" y="3643" class="attr">int hunter_id  [FK]</text>
+<text x="990" y="3660" class="attr">int recipe_id  [FK]</text>
+<text x="990" y="3677" class="attr">int transaction_id  [FK]</text>
+<text x="990" y="3694" class="attr">int currency_transaction_id  [FK]</text>
+<text x="990" y="3711" class="attr">datetime crafted_at</text>
+<rect x="44" y="3774" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="3803" class="entity">CRAFT_ACTION_EQUIPMENT_INPUT</text>
+<line x1="56" y1="3815" x2="484" y2="3815" stroke="#a8b5c2"/>
+<text x="58" y="3838" class="attr">int craft_action_id  [PK, FK]</text>
+<text x="58" y="3855" class="attr">int equipment_instance_id  [PK, FK]</text>
+<text x="58" y="3872" class="attr">string input_role</text>
+<rect x="510" y="3774" width="452" height="190" rx="10" fill="#ffedd1" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="3803" class="entity">DLC_PRODUCT</text>
+<line x1="522" y1="3815" x2="950" y2="3815" stroke="#a8b5c2"/>
+<text x="524" y="3838" class="attr">int product_id  [PK]</text>
+<text x="524" y="3855" class="attr">string platform</text>
+<text x="524" y="3872" class="attr">string product_name</text>
+<text x="524" y="3889" class="attr">string product_type</text>
+<text x="524" y="3906" class="attr">decimal price</text>
+<rect x="976" y="3774" width="452" height="190" rx="10" fill="#ffedd1" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="3803" class="entity">PURCHASE</text>
+<line x1="988" y1="3815" x2="1416" y2="3815" stroke="#a8b5c2"/>
+<text x="990" y="3838" class="attr">int purchase_id  [PK]</text>
+<text x="990" y="3855" class="attr">int account_id  [FK]</text>
+<text x="990" y="3872" class="attr">int product_id  [FK]</text>
+<text x="990" y="3889" class="attr">string platform_order_ref</text>
+<text x="990" y="3906" class="attr">decimal paid_amount</text>
+<text x="990" y="3923" class="attr">string price_currency_code</text>
+<text x="990" y="3940" class="attr">datetime purchased_at</text>
+<rect x="44" y="3986" width="452" height="190" rx="10" fill="#ffedd1" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="4015" class="entity">DLC_CONTENT</text>
+<line x1="56" y1="4027" x2="484" y2="4027" stroke="#a8b5c2"/>
+<text x="58" y="4050" class="attr">int content_id  [PK]</text>
+<text x="58" y="4067" class="attr">string title</text>
+<text x="58" y="4084" class="attr">string content_type</text>
+<text x="58" y="4101" class="attr">boolean cosmetic_only</text>
+<rect x="510" y="3986" width="452" height="190" rx="10" fill="#ffedd1" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="4015" class="entity">PRODUCT_CONTENT</text>
+<line x1="522" y1="4027" x2="950" y2="4027" stroke="#a8b5c2"/>
+<text x="524" y="4050" class="attr">int product_id  [PK, FK]</text>
+<text x="524" y="4067" class="attr">int content_id  [PK, FK]</text>
+<rect x="976" y="3986" width="452" height="190" rx="10" fill="#ffedd1" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="4015" class="entity">ACCOUNT_ENTITLEMENT</text>
+<line x1="988" y1="4027" x2="1416" y2="4027" stroke="#a8b5c2"/>
+<text x="990" y="4050" class="attr">int account_id  [PK, FK]</text>
+<text x="990" y="4067" class="attr">int content_id  [PK, FK]</text>
+<text x="990" y="4084" class="attr">datetime granted_at</text>
+<text x="990" y="4101" class="attr">int purchase_id  [FK]</text>
+<rect x="44" y="4198" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="4227" class="entity">HUNTER_MONSTER_RECORD</text>
+<line x1="56" y1="4239" x2="484" y2="4239" stroke="#a8b5c2"/>
+<text x="58" y="4262" class="attr">int hunter_id  [PK, FK]</text>
+<text x="58" y="4279" class="attr">int monster_id  [PK, FK]</text>
+<text x="58" y="4296" class="attr">int hunt_count</text>
+<text x="58" y="4313" class="attr">int capture_count</text>
+<text x="58" y="4330" class="attr">int smallest_size</text>
+<text x="58" y="4347" class="attr">int largest_size</text>
+<text x="58" y="4364" class="attr">boolean has_miniature_crown</text>
+<text x="58" y="4381" class="attr">… 2개 속성 더 있음</text>
+<rect x="510" y="4198" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="4227" class="entity">HUNTER_PROFILE</text>
+<line x1="522" y1="4239" x2="950" y2="4239" stroke="#a8b5c2"/>
+<text x="524" y="4262" class="attr">int profile_id  [PK]</text>
+<text x="524" y="4279" class="attr">int hunter_id  [FK]</text>
+<text x="524" y="4296" class="attr">string title_text</text>
+<text x="524" y="4313" class="attr">string pose_code</text>
+<text x="524" y="4330" class="attr">string background_code</text>
+<text x="524" y="4347" class="attr">string nameplate_code</text>
+<text x="524" y="4364" class="attr">datetime updated_at</text>
+<rect x="976" y="4198" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="4227" class="entity">HUNTER_PROFILE_ASSET</text>
+<line x1="988" y1="4239" x2="1416" y2="4239" stroke="#a8b5c2"/>
+<text x="990" y="4262" class="attr">int profile_id  [PK, FK]</text>
+<text x="990" y="4279" class="attr">int slot_no  [PK]</text>
+<text x="990" y="4296" class="attr">int content_id  [FK]</text>
+<text x="990" y="4313" class="attr">string asset_type</text>
+<rect x="44" y="4410" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="4439" class="entity">PLAYER_PREFERENCE_PROFILE</text>
+<line x1="56" y1="4451" x2="484" y2="4451" stroke="#a8b5c2"/>
+<text x="58" y="4474" class="attr">int profile_id  [PK]</text>
+<text x="58" y="4491" class="attr">int account_id  [FK]</text>
+<text x="58" y="4508" class="attr">string platform</text>
+<text x="58" y="4525" class="attr">string device_scope</text>
+<text x="58" y="4542" class="attr">datetime updated_at</text>
+<rect x="510" y="4410" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="4439" class="entity">PREFERENCE_SETTING</text>
+<line x1="522" y1="4451" x2="950" y2="4451" stroke="#a8b5c2"/>
+<text x="524" y="4474" class="attr">int setting_id  [PK]</text>
+<text x="524" y="4491" class="attr">string category</text>
+<text x="524" y="4508" class="attr">string setting_key</text>
+<text x="524" y="4525" class="attr">string value_type</text>
+<rect x="976" y="4410" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="4439" class="entity">PROFILE_SETTING_VALUE</text>
+<line x1="988" y1="4451" x2="1416" y2="4451" stroke="#a8b5c2"/>
+<text x="990" y="4474" class="attr">int profile_id  [PK, FK]</text>
+<text x="990" y="4491" class="attr">int setting_id  [PK, FK]</text>
+<text x="990" y="4508" class="attr">string setting_value</text>
+<rect x="44" y="4622" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="4651" class="entity">ENDEMIC_LIFE</text>
+<line x1="56" y1="4663" x2="484" y2="4663" stroke="#a8b5c2"/>
+<text x="58" y="4686" class="attr">int endemic_life_id  [PK]</text>
+<text x="58" y="4703" class="attr">string species_name</text>
+<text x="58" y="4720" class="attr">string life_category</text>
+<text x="58" y="4737" class="attr">string habitat_summary</text>
+<rect x="510" y="4622" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="4651" class="entity">HUNTER_FIELD_GUIDE_ENTRY</text>
+<line x1="522" y1="4663" x2="950" y2="4663" stroke="#a8b5c2"/>
+<text x="524" y="4686" class="attr">int hunter_id  [PK, FK]</text>
+<text x="524" y="4703" class="attr">int endemic_life_id  [PK, FK]</text>
+<text x="524" y="4720" class="attr">boolean discovered</text>
+<text x="524" y="4737" class="attr">boolean captured</text>
+<text x="524" y="4754" class="attr">datetime first_discovered_at</text>
+<text x="524" y="4771" class="attr">datetime first_captured_at</text>
+<rect x="976" y="4622" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="4651" class="entity">WILDLIFE_CAPTURE_EVENT</text>
+<line x1="988" y1="4663" x2="1416" y2="4663" stroke="#a8b5c2"/>
+<text x="990" y="4686" class="attr">int capture_event_id  [PK]</text>
+<text x="990" y="4703" class="attr">int hunter_id  [FK]</text>
+<text x="990" y="4720" class="attr">int endemic_life_id  [FK]</text>
+<text x="990" y="4737" class="attr">int expedition_session_id  [FK]</text>
+<text x="990" y="4754" class="attr">int currency_transaction_id  [FK]</text>
+<text x="990" y="4771" class="attr">datetime captured_at</text>
+<rect x="44" y="4834" width="452" height="190" rx="10" fill="#ffedd1" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="4863" class="entity">CURRENCY</text>
+<line x1="56" y1="4875" x2="484" y2="4875" stroke="#a8b5c2"/>
+<text x="58" y="4898" class="attr">int currency_id  [PK]</text>
+<text x="58" y="4915" class="attr">string currency_name</text>
+<text x="58" y="4932" class="attr">string currency_type</text>
+<rect x="510" y="4834" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="4863" class="entity">HUNTER_CURRENCY_BALANCE</text>
+<line x1="522" y1="4875" x2="950" y2="4875" stroke="#a8b5c2"/>
+<text x="524" y="4898" class="attr">int hunter_id  [PK, FK]</text>
+<text x="524" y="4915" class="attr">int currency_id  [PK, FK]</text>
+<text x="524" y="4932" class="attr">decimal balance</text>
+<rect x="976" y="4834" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="4863" class="entity">HUNTER_CURRENCY_TRANSACTION</text>
+<line x1="988" y1="4875" x2="1416" y2="4875" stroke="#a8b5c2"/>
+<text x="990" y="4898" class="attr">int currency_transaction_id  [PK]</text>
+<text x="990" y="4915" class="attr">int hunter_id  [FK]</text>
+<text x="990" y="4932" class="attr">int currency_id  [FK]</text>
+<text x="990" y="4949" class="attr">decimal amount_delta</text>
+<text x="990" y="4966" class="attr">string reason_code</text>
+<text x="990" y="4983" class="attr">string source_ref</text>
+<text x="990" y="5000" class="attr">datetime transacted_at</text>
+<rect x="44" y="5046" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="5075" class="entity">SETTLEMENT_SERVICE</text>
+<line x1="56" y1="5087" x2="484" y2="5087" stroke="#a8b5c2"/>
+<text x="58" y="5110" class="attr">int service_id  [PK]</text>
+<text x="58" y="5127" class="attr">string service_name</text>
+<text x="58" y="5144" class="attr">string service_type</text>
+<text x="58" y="5161" class="attr">string settlement_code</text>
+<rect x="510" y="5046" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="5075" class="entity">SERVICE_RECIPE</text>
+<line x1="522" y1="5087" x2="950" y2="5087" stroke="#a8b5c2"/>
+<text x="524" y="5110" class="attr">int recipe_id  [PK]</text>
+<text x="524" y="5127" class="attr">int service_id  [FK]</text>
+<text x="524" y="5144" class="attr">int currency_id  [FK]</text>
+<text x="524" y="5161" class="attr">decimal currency_cost</text>
+<text x="524" y="5178" class="attr">string recipe_name</text>
+<rect x="976" y="5046" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="5075" class="entity">SERVICE_RECIPE_INPUT</text>
+<line x1="988" y1="5087" x2="1416" y2="5087" stroke="#a8b5c2"/>
+<text x="990" y="5110" class="attr">int recipe_id  [PK, FK]</text>
+<text x="990" y="5127" class="attr">int item_id  [PK, FK]</text>
+<text x="990" y="5144" class="attr">int required_quantity</text>
+<rect x="44" y="5258" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="5287" class="entity">SERVICE_RECIPE_OUTPUT</text>
+<line x1="56" y1="5299" x2="484" y2="5299" stroke="#a8b5c2"/>
+<text x="58" y="5322" class="attr">int recipe_id  [PK, FK]</text>
+<text x="58" y="5339" class="attr">int item_id  [PK, FK]</text>
+<text x="58" y="5356" class="attr">int output_quantity</text>
+<rect x="510" y="5258" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="5287" class="entity">SERVICE_ACTION</text>
+<line x1="522" y1="5299" x2="950" y2="5299" stroke="#a8b5c2"/>
+<text x="524" y="5322" class="attr">int service_action_id  [PK]</text>
+<text x="524" y="5339" class="attr">int hunter_id  [FK]</text>
+<text x="524" y="5356" class="attr">int recipe_id  [FK]</text>
+<text x="524" y="5373" class="attr">int item_transaction_id  [FK]</text>
+<text x="524" y="5390" class="attr">int currency_transaction_id  [FK]</text>
+<text x="524" y="5407" class="attr">datetime used_at</text>
+<rect x="976" y="5258" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="5287" class="entity">HUNTER_FISHING_SPOT</text>
+<line x1="988" y1="5299" x2="1416" y2="5299" stroke="#a8b5c2"/>
+<text x="990" y="5322" class="attr">int fishing_spot_id  [PK]</text>
+<text x="990" y="5339" class="attr">int locale_id  [FK]</text>
+<text x="990" y="5356" class="attr">string spot_name</text>
+<text x="990" y="5373" class="attr">string environment_window</text>
+<rect x="44" y="5470" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="5499" class="entity">HUNTER_FISHING_ACTION</text>
+<line x1="56" y1="5511" x2="484" y2="5511" stroke="#a8b5c2"/>
+<text x="58" y="5534" class="attr">int fishing_action_id  [PK]</text>
+<text x="58" y="5551" class="attr">int hunter_id  [FK]</text>
+<text x="58" y="5568" class="attr">int fishing_spot_id  [FK]</text>
+<text x="58" y="5585" class="attr">int endemic_life_id  [FK]</text>
+<text x="58" y="5602" class="attr">int item_transaction_id  [FK]</text>
+<text x="58" y="5619" class="attr">int quantity</text>
+<text x="58" y="5636" class="attr">datetime caught_at</text>
+<rect x="510" y="5470" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="5499" class="entity">HUNTER_FISHING_RECORD</text>
+<line x1="522" y1="5511" x2="950" y2="5511" stroke="#a8b5c2"/>
+<text x="524" y="5534" class="attr">int hunter_id  [PK, FK]</text>
+<text x="524" y="5551" class="attr">int endemic_life_id  [PK, FK]</text>
+<text x="524" y="5568" class="attr">int catch_count</text>
+<text x="524" y="5585" class="attr">datetime first_caught_at</text>
+<text x="524" y="5602" class="attr">boolean trophy_size_recorded</text>
+<rect x="976" y="5470" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="5499" class="entity">FIELD_INVESTIGATION</text>
+<line x1="988" y1="5511" x2="1416" y2="5511" stroke="#a8b5c2"/>
+<text x="990" y="5534" class="attr">int field_investigation_id  [PK]</text>
+<text x="990" y="5551" class="attr">int locale_id  [FK]</text>
+<text x="990" y="5568" class="attr">string investigation_rank</text>
+<text x="990" y="5585" class="attr">datetime generated_at</text>
+<text x="990" y="5602" class="attr">datetime expires_at</text>
+<text x="990" y="5619" class="attr">int guaranteed_reward_set</text>
+<rect x="44" y="5682" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="5711" class="entity">INVESTIGATION_TARGET</text>
+<line x1="56" y1="5723" x2="484" y2="5723" stroke="#a8b5c2"/>
+<text x="58" y="5746" class="attr">int field_investigation_id  [PK, FK]</text>
+<text x="58" y="5763" class="attr">int monster_id  [PK, FK]</text>
+<text x="58" y="5780" class="attr">string target_role</text>
+<rect x="510" y="5682" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="5711" class="entity">FIELD_INVESTIGATION_REWARD</text>
+<line x1="522" y1="5723" x2="950" y2="5723" stroke="#a8b5c2"/>
+<text x="524" y="5746" class="attr">int field_investigation_id  [PK, FK]</text>
+<text x="524" y="5763" class="attr">int item_id  [PK, FK]</text>
+<text x="524" y="5780" class="attr">int guaranteed_quantity</text>
+<rect x="976" y="5682" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="5711" class="entity">HUNTER_INVESTIGATION_SAVE</text>
+<line x1="988" y1="5723" x2="1416" y2="5723" stroke="#a8b5c2"/>
+<text x="990" y="5746" class="attr">int investigation_save_id  [PK]</text>
+<text x="990" y="5763" class="attr">int hunter_id  [FK]</text>
+<text x="990" y="5780" class="attr">int field_investigation_id  [FK]</text>
+<text x="990" y="5797" class="attr">int save_cost_transaction_id  [FK]</text>
+<text x="990" y="5814" class="attr">int attempts_remaining</text>
+<text x="990" y="5831" class="attr">datetime saved_at</text>
+<text x="990" y="5848" class="attr">datetime expires_at</text>
+<rect x="44" y="5894" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="5923" class="entity">HUNTER_LOADOUT</text>
+<line x1="56" y1="5935" x2="484" y2="5935" stroke="#a8b5c2"/>
+<text x="58" y="5958" class="attr">int loadout_id  [PK]</text>
+<text x="58" y="5975" class="attr">int hunter_id  [FK]</text>
+<text x="58" y="5992" class="attr">string loadout_type</text>
+<text x="58" y="6009" class="attr">string loadout_name</text>
+<text x="58" y="6026" class="attr">datetime saved_at</text>
+<text x="58" y="6043" class="attr">datetime updated_at</text>
+<rect x="510" y="5894" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="5923" class="entity">LINK_PARTY</text>
+<line x1="522" y1="5935" x2="950" y2="5935" stroke="#a8b5c2"/>
+<text x="524" y="5958" class="attr">int link_party_id  [PK]</text>
+<text x="524" y="5975" class="attr">int leader_hunter_id  [FK]</text>
+<text x="524" y="5992" class="attr">int lobby_ref</text>
+<text x="524" y="6009" class="attr">datetime created_at</text>
+<text x="524" y="6026" class="attr">datetime closed_at</text>
+<rect x="976" y="5894" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="5923" class="entity">LINK_PARTY_MEMBER</text>
+<line x1="988" y1="5935" x2="1416" y2="5935" stroke="#a8b5c2"/>
+<text x="990" y="5958" class="attr">int link_party_id  [PK, FK]</text>
+<text x="990" y="5975" class="attr">int hunter_id  [PK, FK]</text>
+<text x="990" y="5992" class="attr">datetime joined_at</text>
+<text x="990" y="6009" class="attr">datetime left_at</text>
+<text x="990" y="6026" class="attr">string member_status</text>
+<rect x="44" y="6106" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="6135" class="entity">LINK_PARTY_INVITATION</text>
+<line x1="56" y1="6147" x2="484" y2="6147" stroke="#a8b5c2"/>
+<text x="58" y="6170" class="attr">int invitation_id  [PK]</text>
+<text x="58" y="6187" class="attr">int link_party_id  [FK]</text>
+<text x="58" y="6204" class="attr">int inviter_hunter_id  [FK]</text>
+<text x="58" y="6221" class="attr">int invited_hunter_id  [FK]</text>
+<text x="58" y="6238" class="attr">datetime invited_at</text>
+<text x="58" y="6255" class="attr">datetime responded_at</text>
+<text x="58" y="6272" class="attr">string status</text>
+<rect x="510" y="6106" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="6135" class="entity">LOADOUT_EQUIPMENT_SLOT</text>
+<line x1="522" y1="6147" x2="950" y2="6147" stroke="#a8b5c2"/>
+<text x="524" y="6170" class="attr">int loadout_id  [PK, FK]</text>
+<text x="524" y="6187" class="attr">string equipment_slot  [PK]</text>
+<text x="524" y="6204" class="attr">int equipment_instance_id  [FK]</text>
+<rect x="976" y="6106" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="6135" class="entity">LOADOUT_ITEM_SLOT</text>
+<line x1="988" y1="6147" x2="1416" y2="6147" stroke="#a8b5c2"/>
+<text x="990" y="6170" class="attr">int loadout_id  [PK, FK]</text>
+<text x="990" y="6187" class="attr">int pouch_slot_no  [PK]</text>
+<text x="990" y="6204" class="attr">int item_id  [FK]</text>
+<text x="990" y="6221" class="attr">int saved_quantity</text>
+<rect x="44" y="6318" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="58" y="6347" class="entity">RADIAL_MENU</text>
+<line x1="56" y1="6359" x2="484" y2="6359" stroke="#a8b5c2"/>
+<text x="58" y="6382" class="attr">int radial_menu_id  [PK]</text>
+<text x="58" y="6399" class="attr">int hunter_id  [FK]</text>
+<text x="58" y="6416" class="attr">string menu_name</text>
+<text x="58" y="6433" class="attr">int menu_order</text>
+<text x="58" y="6450" class="attr">datetime updated_at</text>
+<rect x="510" y="6318" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="524" y="6347" class="entity">RADIAL_MENU_SLOT</text>
+<line x1="522" y1="6359" x2="950" y2="6359" stroke="#a8b5c2"/>
+<text x="524" y="6382" class="attr">int radial_menu_id  [PK, FK]</text>
+<text x="524" y="6399" class="attr">int slot_no  [PK]</text>
+<text x="524" y="6416" class="attr">int action_id  [FK]</text>
+<rect x="976" y="6318" width="452" height="190" rx="10" fill="#ffffff" stroke="#9aabba" stroke-width="1.4"/>
+<text x="990" y="6347" class="entity">RADIAL_ACTION</text>
+<line x1="988" y1="6359" x2="1416" y2="6359" stroke="#a8b5c2"/>
+<text x="990" y="6382" class="attr">int action_id  [PK]</text>
+<text x="990" y="6399" class="attr">string action_type</text>
+<text x="990" y="6416" class="attr">string action_code</text>
+<text x="990" y="6433" class="attr">string action_label</text>
+<text x="44" y="6578" class="section">관계와 Crow’s Foot 카디널리티</text>
+<rect x="44" y="6602" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="6619" class="rel">HUNTER  || ───── o{  HUNTER_MONSTER_RECORD</text>
+<text x="55" y="6636" class="sub" style="font-size:12px">tracks</text>
+<rect x="761" y="6602" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="6619" class="rel">MONSTER  || ───── o{  HUNTER_MONSTER_RECORD</text>
+<text x="772" y="6636" class="sub" style="font-size:12px">record_for</text>
+<rect x="44" y="6654" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="6671" class="rel">HUNTER  || ───── o|  HUNTER_PROFILE</text>
+<text x="55" y="6688" class="sub" style="font-size:12px">customizes</text>
+<rect x="761" y="6654" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="6671" class="rel">HUNTER_PROFILE  || ───── o{  HUNTER_PROFILE_ASSET</text>
+<text x="772" y="6688" class="sub" style="font-size:12px">displays</text>
+<rect x="44" y="6706" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="6723" class="rel">DLC_CONTENT  o| ───── o{  HUNTER_PROFILE_ASSET</text>
+<text x="55" y="6740" class="sub" style="font-size:12px">optional_entitlement_asset</text>
+<rect x="761" y="6706" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="6723" class="rel">PLAYER_ACCOUNT  || ───── o{  PLAYER_PREFERENCE_PROFILE</text>
+<text x="772" y="6740" class="sub" style="font-size:12px">configures</text>
+<rect x="44" y="6758" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="6775" class="rel">PLAYER_PREFERENCE_PROFILE  || ───── o{  PROFILE_SETTING_VALUE</text>
+<text x="55" y="6792" class="sub" style="font-size:12px">stores</text>
+<rect x="761" y="6758" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="6775" class="rel">PREFERENCE_SETTING  || ───── o{  PROFILE_SETTING_VALUE</text>
+<text x="772" y="6792" class="sub" style="font-size:12px">defines</text>
+<rect x="44" y="6810" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="6827" class="rel">HUNTER  || ───── o{  HUNTER_FIELD_GUIDE_ENTRY</text>
+<text x="55" y="6844" class="sub" style="font-size:12px">tracks_wildlife</text>
+<rect x="761" y="6810" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="6827" class="rel">ENDEMIC_LIFE  || ───── o{  HUNTER_FIELD_GUIDE_ENTRY</text>
+<text x="772" y="6844" class="sub" style="font-size:12px">guide_species</text>
+<rect x="44" y="6862" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="6879" class="rel">HUNTER  || ───── o{  WILDLIFE_CAPTURE_EVENT</text>
+<text x="55" y="6896" class="sub" style="font-size:12px">captures</text>
+<rect x="761" y="6862" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="6879" class="rel">ENDEMIC_LIFE  || ───── o{  WILDLIFE_CAPTURE_EVENT</text>
+<text x="772" y="6896" class="sub" style="font-size:12px">captured_species</text>
+<rect x="44" y="6914" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="6931" class="rel">EXPEDITION_SESSION  o| ───── o{  WILDLIFE_CAPTURE_EVENT</text>
+<text x="55" y="6948" class="sub" style="font-size:12px">observed_during</text>
+<rect x="761" y="6914" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="6931" class="rel">HUNTER  || ───── o{  HUNTER_CURRENCY_BALANCE</text>
+<text x="772" y="6948" class="sub" style="font-size:12px">holds_currency</text>
+<rect x="44" y="6966" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="6983" class="rel">CURRENCY  || ───── o{  HUNTER_CURRENCY_BALANCE</text>
+<text x="55" y="7000" class="sub" style="font-size:12px">wallet_type</text>
+<rect x="761" y="6966" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="6983" class="rel">HUNTER  || ───── o{  HUNTER_CURRENCY_TRANSACTION</text>
+<text x="772" y="7000" class="sub" style="font-size:12px">currency_history</text>
+<rect x="44" y="7018" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="7035" class="rel">CURRENCY  || ───── o{  HUNTER_CURRENCY_TRANSACTION</text>
+<text x="55" y="7052" class="sub" style="font-size:12px">transaction_type</text>
+<rect x="761" y="7018" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="7035" class="rel">SETTLEMENT_SERVICE  || ───── o{  SERVICE_RECIPE</text>
+<text x="772" y="7052" class="sub" style="font-size:12px">provides</text>
+<rect x="44" y="7070" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="7087" class="rel">CURRENCY  || ───── o{  SERVICE_RECIPE</text>
+<text x="55" y="7104" class="sub" style="font-size:12px">recipe_currency_cost</text>
+<rect x="761" y="7070" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="7087" class="rel">SERVICE_RECIPE  || ───── o{  SERVICE_RECIPE_INPUT</text>
+<text x="772" y="7104" class="sub" style="font-size:12px">consumes</text>
+<rect x="44" y="7122" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="7139" class="rel">ITEM  || ───── o{  SERVICE_RECIPE_INPUT</text>
+<text x="55" y="7156" class="sub" style="font-size:12px">input_item</text>
+<rect x="761" y="7122" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="7139" class="rel">SERVICE_RECIPE  || ───── o{  SERVICE_RECIPE_OUTPUT</text>
+<text x="772" y="7156" class="sub" style="font-size:12px">produces</text>
+<rect x="44" y="7174" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="7191" class="rel">ITEM  || ───── o{  SERVICE_RECIPE_OUTPUT</text>
+<text x="55" y="7208" class="sub" style="font-size:12px">output_item</text>
+<rect x="761" y="7174" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="7191" class="rel">HUNTER  || ───── o{  SERVICE_ACTION</text>
+<text x="772" y="7208" class="sub" style="font-size:12px">uses_service</text>
+<rect x="44" y="7226" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="7243" class="rel">SERVICE_RECIPE  || ───── o{  SERVICE_ACTION</text>
+<text x="55" y="7260" class="sub" style="font-size:12px">executed_recipe</text>
+<rect x="761" y="7226" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="7243" class="rel">ITEM_TRANSACTION  o| ───── o{  SERVICE_ACTION</text>
+<text x="772" y="7260" class="sub" style="font-size:12px">item_exchange</text>
+<rect x="44" y="7278" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="7295" class="rel">HUNTER_CURRENCY_TRANSACTION  o| ───── o{  SERVICE_ACTION</text>
+<text x="55" y="7312" class="sub" style="font-size:12px">currency_change</text>
+<rect x="761" y="7278" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="7295" class="rel">HUNTER_CURRENCY_TRANSACTION  o| ───── o{  CRAFT_ACTION</text>
+<text x="772" y="7312" class="sub" style="font-size:12px">pays_zenny</text>
+<rect x="44" y="7330" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="7347" class="rel">HUNTER_CURRENCY_TRANSACTION  o| ───── o{  WILDLIFE_CAPTURE_EVENT</text>
+<text x="55" y="7364" class="sub" style="font-size:12px">capture_points</text>
+<rect x="761" y="7330" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="7347" class="rel">LOCALE  || ───── o{  HUNTER_FISHING_SPOT</text>
+<text x="772" y="7364" class="sub" style="font-size:12px">has_fishing_spot</text>
+<rect x="44" y="7382" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="7399" class="rel">HUNTER_FISHING_SPOT  || ───── o{  HUNTER_FISHING_ACTION</text>
+<text x="55" y="7416" class="sub" style="font-size:12px">used_spot</text>
+<rect x="761" y="7382" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="7399" class="rel">ENDEMIC_LIFE  || ───── o{  HUNTER_FISHING_ACTION</text>
+<text x="772" y="7416" class="sub" style="font-size:12px">caught_fish</text>
+<rect x="44" y="7434" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="7451" class="rel">HUNTER  || ───── o{  HUNTER_FISHING_ACTION</text>
+<text x="55" y="7468" class="sub" style="font-size:12px">reels_in</text>
+<rect x="761" y="7434" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="7451" class="rel">ITEM_TRANSACTION  o| ───── o{  HUNTER_FISHING_ACTION</text>
+<text x="772" y="7468" class="sub" style="font-size:12px">fish_catch_items</text>
+<rect x="44" y="7486" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="7503" class="rel">HUNTER  || ───── o{  HUNTER_FISHING_RECORD</text>
+<text x="55" y="7520" class="sub" style="font-size:12px">tracks_fish</text>
+<rect x="761" y="7486" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="7503" class="rel">ENDEMIC_LIFE  || ───── o{  HUNTER_FISHING_RECORD</text>
+<text x="772" y="7520" class="sub" style="font-size:12px">recorded_fish</text>
+<rect x="44" y="7538" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="7555" class="rel">LOCALE  || ───── o{  FIELD_INVESTIGATION</text>
+<text x="55" y="7572" class="sub" style="font-size:12px">available_in</text>
+<rect x="761" y="7538" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="7555" class="rel">FIELD_INVESTIGATION  || ───── o{  INVESTIGATION_TARGET</text>
+<text x="772" y="7572" class="sub" style="font-size:12px">target_spec</text>
+<rect x="44" y="7590" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="7607" class="rel">MONSTER  || ───── o{  INVESTIGATION_TARGET</text>
+<text x="55" y="7624" class="sub" style="font-size:12px">investigation_monster</text>
+<rect x="761" y="7590" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="7607" class="rel">FIELD_INVESTIGATION  || ───── o{  FIELD_INVESTIGATION_REWARD</text>
+<text x="772" y="7624" class="sub" style="font-size:12px">guarantees</text>
+<rect x="44" y="7642" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="7659" class="rel">ITEM  || ───── o{  FIELD_INVESTIGATION_REWARD</text>
+<text x="55" y="7676" class="sub" style="font-size:12px">guaranteed_item</text>
+<rect x="761" y="7642" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="7659" class="rel">HUNTER  || ───── o{  HUNTER_INVESTIGATION_SAVE</text>
+<text x="772" y="7676" class="sub" style="font-size:12px">stores_investigation</text>
+<rect x="44" y="7694" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="7711" class="rel">FIELD_INVESTIGATION  || ───── o{  HUNTER_INVESTIGATION_SAVE</text>
+<text x="55" y="7728" class="sub" style="font-size:12px">saved_form</text>
+<rect x="761" y="7694" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="7711" class="rel">HUNTER_CURRENCY_TRANSACTION  o| ───── o{  HUNTER_INVESTIGATION_SAVE</text>
+<text x="772" y="7728" class="sub" style="font-size:12px">save_cost</text>
+<rect x="44" y="7746" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="7763" class="rel">HUNTER_INVESTIGATION_SAVE  o| ───── o{  HUNT_SESSION</text>
+<text x="55" y="7780" class="sub" style="font-size:12px">repeat_attempts</text>
+<rect x="761" y="7746" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="7763" class="rel">HUNTER  || ───── o{  HUNTER_LOADOUT</text>
+<text x="772" y="7780" class="sub" style="font-size:12px">saves</text>
+<rect x="44" y="7798" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="7815" class="rel">HUNTER  || ───── o{  LINK_PARTY_MEMBER</text>
+<text x="55" y="7832" class="sub" style="font-size:12px">joins_link_party</text>
+<rect x="761" y="7798" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="7815" class="rel">LINK_PARTY  || ───── o{  LINK_PARTY_MEMBER</text>
+<text x="772" y="7832" class="sub" style="font-size:12px">has_members</text>
+<rect x="44" y="7850" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="7867" class="rel">HUNTER  || ───── o{  LINK_PARTY</text>
+<text x="55" y="7884" class="sub" style="font-size:12px">leads</text>
+<rect x="761" y="7850" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="7867" class="rel">LINK_PARTY  || ───── o{  LINK_PARTY_INVITATION</text>
+<text x="772" y="7884" class="sub" style="font-size:12px">invites_from</text>
+<rect x="44" y="7902" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="7919" class="rel">HUNTER  || ───── o{  LINK_PARTY_INVITATION</text>
+<text x="55" y="7936" class="sub" style="font-size:12px">invited_hunter</text>
+<rect x="761" y="7902" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="7919" class="rel">HUNTER  || ───── o{  LINK_PARTY_INVITATION</text>
+<text x="772" y="7936" class="sub" style="font-size:12px">sends_invitation</text>
+<rect x="44" y="7954" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="7971" class="rel">HUNTER_LOADOUT  || ───── o{  LOADOUT_EQUIPMENT_SLOT</text>
+<text x="55" y="7988" class="sub" style="font-size:12px">stores_gear</text>
+<rect x="761" y="7954" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="7971" class="rel">EQUIPMENT_INSTANCE  || ───── o{  LOADOUT_EQUIPMENT_SLOT</text>
+<text x="772" y="7988" class="sub" style="font-size:12px">referenced_gear</text>
+<rect x="44" y="8006" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="8023" class="rel">HUNTER_LOADOUT  || ───── o{  LOADOUT_ITEM_SLOT</text>
+<text x="55" y="8040" class="sub" style="font-size:12px">stores_items</text>
+<rect x="761" y="8006" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="8023" class="rel">ITEM  || ───── o{  LOADOUT_ITEM_SLOT</text>
+<text x="772" y="8040" class="sub" style="font-size:12px">referenced_item</text>
+<rect x="44" y="8058" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="8075" class="rel">HUNTER  || ───── o{  RADIAL_MENU</text>
+<text x="55" y="8092" class="sub" style="font-size:12px">configures</text>
+<rect x="761" y="8058" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="8075" class="rel">RADIAL_MENU  || ───── o{  RADIAL_MENU_SLOT</text>
+<text x="772" y="8092" class="sub" style="font-size:12px">contains</text>
+<rect x="44" y="8110" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="8127" class="rel">RADIAL_ACTION  || ───── o{  RADIAL_MENU_SLOT</text>
+<text x="55" y="8144" class="sub" style="font-size:12px">invokes</text>
+<rect x="761" y="8110" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="8127" class="rel">PLAYER_ACCOUNT  || ───── o{  HUNTER</text>
+<text x="772" y="8144" class="sub" style="font-size:12px">owns</text>
+<rect x="44" y="8162" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="8179" class="rel">HUNTER  || ───── o|  PALICO</text>
+<text x="55" y="8196" class="sub" style="font-size:12px">partners_with</text>
+<rect x="761" y="8162" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="8179" class="rel">PALICO  || ───── o{  PALICO_ACTION_UNLOCK</text>
+<text x="772" y="8196" class="sub" style="font-size:12px">learns</text>
+<rect x="44" y="8214" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="8231" class="rel">PALICO_SUPPORT_ACTION  || ───── o{  PALICO_ACTION_UNLOCK</text>
+<text x="55" y="8248" class="sub" style="font-size:12px">action_unlocked</text>
+<rect x="761" y="8214" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="8231" class="rel">PALICO  || ───── o{  PALICO_EQUIPMENT_INSTANCE</text>
+<text x="772" y="8248" class="sub" style="font-size:12px">equips</text>
+<rect x="44" y="8266" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="8283" class="rel">EQUIPMENT  || ───── o{  PALICO_EQUIPMENT_INSTANCE</text>
+<text x="55" y="8300" class="sub" style="font-size:12px">palico_gear</text>
+<rect x="761" y="8266" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="8283" class="rel">QUEST  || ───── o{  HUNT_SESSION</text>
+<text x="772" y="8300" class="sub" style="font-size:12px">undertaken_as</text>
+<rect x="44" y="8318" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="8335" class="rel">SEASONAL_EVENT  || ───── o{  EVENT_QUEST_WINDOW</text>
+<text x="55" y="8352" class="sub" style="font-size:12px">features</text>
+<rect x="761" y="8318" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="8335" class="rel">QUEST  || ───── o{  EVENT_QUEST_WINDOW</text>
+<text x="772" y="8352" class="sub" style="font-size:12px">scheduled_for</text>
+<rect x="44" y="8370" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="8387" class="rel">SEASONAL_EVENT  o| ───── o{  DAILY_BOUNTY</text>
+<text x="55" y="8404" class="sub" style="font-size:12px">may_define</text>
+<rect x="761" y="8370" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="8387" class="rel">HUNTER  || ───── o{  HUNTER_BOUNTY_STATUS</text>
+<text x="772" y="8404" class="sub" style="font-size:12px">tracks</text>
+<rect x="44" y="8422" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="8439" class="rel">DAILY_BOUNTY  || ───── o{  HUNTER_BOUNTY_STATUS</text>
+<text x="55" y="8456" class="sub" style="font-size:12px">assigned_as</text>
+<rect x="761" y="8422" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="8439" class="rel">LOGIN_BONUS_CAMPAIGN  || ───── |{  LOGIN_BONUS_DAY</text>
+<text x="772" y="8456" class="sub" style="font-size:12px">schedules</text>
+<rect x="44" y="8474" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="8491" class="rel">LOGIN_BONUS_DAY  || ───── |{  LOGIN_BONUS_REWARD</text>
+<text x="55" y="8508" class="sub" style="font-size:12px">includes</text>
+<rect x="761" y="8474" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="8491" class="rel">ITEM  || ───── o{  LOGIN_BONUS_REWARD</text>
+<text x="772" y="8508" class="sub" style="font-size:12px">grants</text>
+<rect x="44" y="8526" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="8543" class="rel">HUNTER  || ───── o{  HUNTER_LOGIN_CLAIM</text>
+<text x="55" y="8560" class="sub" style="font-size:12px">receives</text>
+<rect x="761" y="8526" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="8543" class="rel">LOGIN_BONUS_DAY  || ───── o{  HUNTER_LOGIN_CLAIM</text>
+<text x="772" y="8560" class="sub" style="font-size:12px">claimed_day</text>
+<rect x="44" y="8578" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="8595" class="rel">MEAL_RECIPE  || ───── |{  MEAL_RECIPE_INGREDIENT</text>
+<text x="55" y="8612" class="sub" style="font-size:12px">uses</text>
+<rect x="761" y="8578" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="8595" class="rel">ITEM  || ───── o{  MEAL_RECIPE_INGREDIENT</text>
+<text x="772" y="8612" class="sub" style="font-size:12px">ingredient</text>
+<rect x="44" y="8630" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="8647" class="rel">HUNTER  || ───── o{  HUNTER_MEAL_USE</text>
+<text x="55" y="8664" class="sub" style="font-size:12px">eats</text>
+<rect x="761" y="8630" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="8647" class="rel">MEAL_RECIPE  || ───── o{  HUNTER_MEAL_USE</text>
+<text x="772" y="8664" class="sub" style="font-size:12px">meal_type</text>
+<rect x="44" y="8682" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="8699" class="rel">HUNT_SESSION  o| ───── o{  HUNTER_MEAL_USE</text>
+<text x="55" y="8716" class="sub" style="font-size:12px">used_during</text>
+<rect x="761" y="8682" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="8699" class="rel">ITEM_TRANSACTION  o| ───── o{  HUNTER_MEAL_USE</text>
+<text x="772" y="8716" class="sub" style="font-size:12px">consumes_items</text>
+<rect x="44" y="8734" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="8751" class="rel">HUB_ACTIVITY  || ───── o{  HUNTER_HUB_ACTIVITY</text>
+<text x="55" y="8768" class="sub" style="font-size:12px">recorded_for</text>
+<rect x="761" y="8734" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="8751" class="rel">HUNTER  || ───── o{  HUNTER_HUB_ACTIVITY</text>
+<text x="772" y="8768" class="sub" style="font-size:12px">plays</text>
+<rect x="44" y="8786" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="8803" class="rel">HUB_ACTIVITY  || ───── o{  HUB_ACTIVITY_REWARD</text>
+<text x="55" y="8820" class="sub" style="font-size:12px">offers</text>
+<rect x="761" y="8786" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="8803" class="rel">ITEM  || ───── o{  HUB_ACTIVITY_REWARD</text>
+<text x="772" y="8820" class="sub" style="font-size:12px">grants</text>
+<rect x="44" y="8838" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="8855" class="rel">HUNTER_HUB_ACTIVITY  || ───── o{  HUNTER_HUB_REWARD_CLAIM</text>
+<text x="55" y="8872" class="sub" style="font-size:12px">claims</text>
+<rect x="761" y="8838" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="8855" class="rel">HUB_ACTIVITY_REWARD  || ───── o{  HUNTER_HUB_REWARD_CLAIM</text>
+<text x="772" y="8872" class="sub" style="font-size:12px">selected_reward</text>
+<rect x="44" y="8890" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="8907" class="rel">ITEM_TRANSACTION  o| ───── o{  HUNTER_HUB_REWARD_CLAIM</text>
+<text x="55" y="8924" class="sub" style="font-size:12px">reward_delivery_transaction</text>
+<rect x="761" y="8890" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="8907" class="rel">LOCALE  o| ───── o{  QUEST</text>
+<text x="772" y="8924" class="sub" style="font-size:12px">can_take_place_in</text>
+<rect x="44" y="8942" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="8959" class="rel">LOCALE  || ───── o{  EXPEDITION_SESSION</text>
+<text x="55" y="8976" class="sub" style="font-size:12px">field_for</text>
+<rect x="761" y="8942" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="8959" class="rel">EXPEDITION_SESSION  || ───── |{  EXPEDITION_PARTICIPANT</text>
+<text x="772" y="8976" class="sub" style="font-size:12px">includes</text>
+<rect x="44" y="8994" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="9011" class="rel">HUNTER  || ───── o{  EXPEDITION_PARTICIPANT</text>
+<text x="55" y="9028" class="sub" style="font-size:12px">explores</text>
+<rect x="761" y="8994" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="9011" class="rel">EXPEDITION_SESSION  || ───── o{  FIELD_ENVIRONMENT_LOG</text>
+<text x="772" y="9028" class="sub" style="font-size:12px">environment_changes</text>
+<rect x="44" y="9046" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="9063" class="rel">LOCALE  || ───── o{  POPUP_CAMP_SITE</text>
+<text x="55" y="9080" class="sub" style="font-size:12px">has_sites</text>
+<rect x="761" y="9046" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="9063" class="rel">EXPEDITION_SESSION  || ───── o{  CAMP_PLACEMENT</text>
+<text x="772" y="9080" class="sub" style="font-size:12px">deploys</text>
+<rect x="44" y="9098" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="9115" class="rel">POPUP_CAMP_SITE  || ───── o{  CAMP_PLACEMENT</text>
+<text x="55" y="9132" class="sub" style="font-size:12px">selected_site</text>
+<rect x="761" y="9098" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="9115" class="rel">HUNTER  || ───── o{  CAMP_PLACEMENT</text>
+<text x="772" y="9132" class="sub" style="font-size:12px">places</text>
+<rect x="44" y="9150" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="9167" class="rel">EXPEDITION_SESSION  o| ───── o{  HUNT_SESSION</text>
+<text x="55" y="9184" class="sub" style="font-size:12px">can_start_hunt</text>
+<rect x="761" y="9150" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="9167" class="rel">QUEST  || ───── o{  QUEST_PREREQUISITE</text>
+<text x="772" y="9184" class="sub" style="font-size:12px">gated_quest</text>
+<rect x="44" y="9202" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="9219" class="rel">QUEST  || ───── o{  QUEST_PREREQUISITE</text>
+<text x="55" y="9236" class="sub" style="font-size:12px">prerequisite</text>
+<rect x="761" y="9202" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="9219" class="rel">HUNTER  || ───── o{  HUNTER_QUEST_STATE</text>
+<text x="772" y="9236" class="sub" style="font-size:12px">tracks</text>
+<rect x="44" y="9254" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="9271" class="rel">QUEST  || ───── o{  HUNTER_QUEST_STATE</text>
+<text x="55" y="9288" class="sub" style="font-size:12px">unlocked_for</text>
+<rect x="761" y="9254" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="9271" class="rel">HUNT_SESSION  || ───── |{  HUNT_PARTICIPANT</text>
+<text x="772" y="9288" class="sub" style="font-size:12px">includes</text>
+<rect x="44" y="9306" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="9323" class="rel">HUNTER  || ───── o{  HUNT_PARTICIPANT</text>
+<text x="55" y="9340" class="sub" style="font-size:12px">joins</text>
+<rect x="761" y="9306" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="9323" class="rel">HUNT_SESSION  || ───── o{  SUPPORT_PARTICIPATION</text>
+<text x="772" y="9340" class="sub" style="font-size:12px">recruits</text>
+<rect x="44" y="9358" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="9375" class="rel">SUPPORT_HUNTER  || ───── o{  SUPPORT_PARTICIPATION</text>
+<text x="55" y="9392" class="sub" style="font-size:12px">assists</text>
+<rect x="761" y="9358" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="9375" class="rel">HUNT_SESSION  || ───── o{  SESSION_TARGET</text>
+<text x="772" y="9392" class="sub" style="font-size:12px">targets</text>
+<rect x="44" y="9410" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="9427" class="rel">MONSTER  || ───── o{  SESSION_TARGET</text>
+<text x="55" y="9444" class="sub" style="font-size:12px">appears_in</text>
+<rect x="761" y="9410" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="9427" class="rel">MONSTER  || ───── |{  MONSTER_PART</text>
+<text x="772" y="9444" class="sub" style="font-size:12px">has_parts</text>
+<rect x="44" y="9462" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="9479" class="rel">HUNT_SESSION  || ───── o{  HUNT_PART_EVENT</text>
+<text x="55" y="9496" class="sub" style="font-size:12px">records</text>
+<rect x="761" y="9462" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="9479" class="rel">MONSTER_PART  o| ───── o{  HUNT_PART_EVENT</text>
+<text x="772" y="9496" class="sub" style="font-size:12px">concerns</text>
+<rect x="44" y="9514" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="9531" class="rel">HUNTER  o| ───── o{  HUNT_PART_EVENT</text>
+<text x="55" y="9548" class="sub" style="font-size:12px">caused_by</text>
+<rect x="761" y="9514" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="9531" class="rel">HUNT_SESSION  || ───── o{  REWARD_GRANT</text>
+<text x="772" y="9548" class="sub" style="font-size:12px">awards</text>
+<rect x="44" y="9566" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="9583" class="rel">HUNTER  || ───── o{  REWARD_GRANT</text>
+<text x="55" y="9600" class="sub" style="font-size:12px">receives</text>
+<rect x="761" y="9566" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="9583" class="rel">ITEM  || ───── o{  REWARD_GRANT</text>
+<text x="772" y="9600" class="sub" style="font-size:12px">granted_as</text>
+<rect x="44" y="9618" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="9635" class="rel">HUNTER  || ───── o{  INVENTORY_STACK</text>
+<text x="55" y="9652" class="sub" style="font-size:12px">stores</text>
+<rect x="761" y="9618" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="9635" class="rel">ITEM  || ───── o{  INVENTORY_STACK</text>
+<text x="772" y="9652" class="sub" style="font-size:12px">counted_as</text>
+<rect x="44" y="9670" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="9687" class="rel">HUNTER  || ───── o{  ITEM_TRANSACTION</text>
+<text x="55" y="9704" class="sub" style="font-size:12px">changes_items</text>
+<rect x="761" y="9670" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="9687" class="rel">ITEM_TRANSACTION  || ───── |{  ITEM_TRANSACTION_LINE</text>
+<text x="772" y="9704" class="sub" style="font-size:12px">contains</text>
+<rect x="44" y="9722" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="9739" class="rel">ITEM  || ───── o{  ITEM_TRANSACTION_LINE</text>
+<text x="55" y="9756" class="sub" style="font-size:12px">moved_as</text>
+<rect x="761" y="9722" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="9739" class="rel">EQUIPMENT  || ───── o{  CRAFT_RECIPE</text>
+<text x="772" y="9756" class="sub" style="font-size:12px">crafted_by</text>
+<rect x="44" y="9774" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="9791" class="rel">CRAFT_RECIPE  || ───── |{  RECIPE_MATERIAL</text>
+<text x="55" y="9808" class="sub" style="font-size:12px">requires</text>
+<rect x="761" y="9774" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="9791" class="rel">ITEM  || ───── o{  RECIPE_MATERIAL</text>
+<text x="772" y="9808" class="sub" style="font-size:12px">consumed_as</text>
+<rect x="44" y="9826" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="9843" class="rel">HUNTER  || ───── o{  EQUIPMENT_INSTANCE</text>
+<text x="55" y="9860" class="sub" style="font-size:12px">owns</text>
+<rect x="761" y="9826" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="9843" class="rel">EQUIPMENT  || ───── o{  EQUIPMENT_INSTANCE</text>
+<text x="772" y="9860" class="sub" style="font-size:12px">instanced_as</text>
+<rect x="44" y="9878" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="9895" class="rel">CRAFT_ACTION  o| ───── o|  EQUIPMENT_INSTANCE</text>
+<text x="55" y="9912" class="sub" style="font-size:12px">creates</text>
+<rect x="761" y="9878" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="9895" class="rel">EQUIPMENT  || ───── o{  EQUIPMENT_SKILL_GRANT</text>
+<text x="772" y="9912" class="sub" style="font-size:12px">grants</text>
+<rect x="44" y="9930" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="9947" class="rel">EQUIPMENT_SKILL  || ───── o{  EQUIPMENT_SKILL_GRANT</text>
+<text x="55" y="9964" class="sub" style="font-size:12px">skill_of</text>
+<rect x="761" y="9930" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="9947" class="rel">EQUIPMENT  || ───── o{  EQUIPMENT_UPGRADE_PATH</text>
+<text x="772" y="9964" class="sub" style="font-size:12px">upgrade_source</text>
+<rect x="44" y="9982" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="9999" class="rel">EQUIPMENT  || ───── o{  EQUIPMENT_UPGRADE_PATH</text>
+<text x="55" y="10016" class="sub" style="font-size:12px">upgrade_target</text>
+<rect x="761" y="9982" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="9999" class="rel">CRAFT_RECIPE  o| ───── o{  EQUIPMENT_UPGRADE_PATH</text>
+<text x="772" y="10016" class="sub" style="font-size:12px">path_recipe</text>
+<rect x="44" y="10034" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="10051" class="rel">HUNTER  || ───── o{  CRAFT_ACTION</text>
+<text x="55" y="10068" class="sub" style="font-size:12px">performs</text>
+<rect x="761" y="10034" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="10051" class="rel">CRAFT_RECIPE  || ───── o{  CRAFT_ACTION</text>
+<text x="772" y="10068" class="sub" style="font-size:12px">used_in</text>
+<rect x="44" y="10086" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="10103" class="rel">ITEM_TRANSACTION  o| ───── o{  CRAFT_ACTION</text>
+<text x="55" y="10120" class="sub" style="font-size:12px">materializes_craft</text>
+<rect x="761" y="10086" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="10103" class="rel">CRAFT_ACTION  || ───── o{  CRAFT_ACTION_EQUIPMENT_INPUT</text>
+<text x="772" y="10120" class="sub" style="font-size:12px">consumes_equipment</text>
+<rect x="44" y="10138" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="10155" class="rel">EQUIPMENT_INSTANCE  || ───── o|  CRAFT_ACTION_EQUIPMENT_INPUT</text>
+<text x="55" y="10172" class="sub" style="font-size:12px">consumed_instance</text>
+<rect x="761" y="10138" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="10155" class="rel">PLAYER_ACCOUNT  || ───── o{  PURCHASE</text>
+<text x="772" y="10172" class="sub" style="font-size:12px">places</text>
+<rect x="44" y="10190" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="10207" class="rel">DLC_PRODUCT  || ───── o{  PURCHASE</text>
+<text x="55" y="10224" class="sub" style="font-size:12px">purchased_as</text>
+<rect x="761" y="10190" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="10207" class="rel">PURCHASE  || ───── o{  ACCOUNT_ENTITLEMENT</text>
+<text x="772" y="10224" class="sub" style="font-size:12px">source_purchase</text>
+<rect x="44" y="10242" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="10259" class="rel">DLC_PRODUCT  || ───── |{  PRODUCT_CONTENT</text>
+<text x="55" y="10276" class="sub" style="font-size:12px">includes</text>
+<rect x="761" y="10242" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="10259" class="rel">DLC_CONTENT  || ───── o{  PRODUCT_CONTENT</text>
+<text x="772" y="10276" class="sub" style="font-size:12px">bundled_in</text>
+<rect x="44" y="10294" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="55" y="10311" class="rel">PLAYER_ACCOUNT  || ───── o{  ACCOUNT_ENTITLEMENT</text>
+<text x="55" y="10328" class="sub" style="font-size:12px">receives</text>
+<rect x="761" y="10294" width="695" height="42" rx="6" fill="#fff" stroke="#c6d0da"/>
+<text x="772" y="10311" class="rel">DLC_CONTENT  || ───── o{  ACCOUNT_ENTITLEMENT</text>
+<text x="772" y="10328" class="sub" style="font-size:12px">grants_access</text>
+<line x1="44" y1="10390" x2="1456" y2="10390" stroke="#c6d0da"/>
+<text x="44" y="10416" class="badge">기호: || 정확히 1 · o| 0 또는 1 · |{ 1 이상 · o{ 0 이상</text>
+<text x="44" y="10442" class="sub">논리 개념 모델 — 실제 게임 내부 테이블을 주장하지 않음</text>
+</svg>
